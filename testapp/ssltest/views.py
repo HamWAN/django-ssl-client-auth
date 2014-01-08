@@ -8,8 +8,8 @@ class Fineid(View):
     def get(self, request, **kwargs):
         ctx = dict(
             user_data=user_dict_from_dn(request.META[
-                'HTTP_X_SSL_USER_DN']),
-            authentication_status=request.META['HTTP_X_SSL_AUTHENTICATED'],
+                'SSL_CLIENT_S_DN']),
+            authentication_status=request.META['SSL_CLIENT_VERIFY'],
             user=str(request.user))
         return HttpResponse(pformat(ctx), mimetype="text/plain")
 
@@ -17,7 +17,7 @@ class Test(View):
     def get(self, request, **kwargs):
         ctx = dict(
             user_dn=request.META[
-                'HTTP_X_SSL_USER_DN'],
-            authentication_status=request.META['HTTP_X_SSL_AUTHENTICATED'],
+                'SSL_CLIENT_S_DN'],
+            authentication_status=request.META['SSL_CLIENT_VERIFY'],
             user=str(request.user))
         return HttpResponse(pformat(ctx), mimetype="text/plain")

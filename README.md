@@ -11,9 +11,9 @@ MIT license, see LICENSE.txt for full text.
 
 ### SSL
 
-Set up nginx and create SSL certificates for your server and set up the paths
+Set up apache and create SSL certificates for your server and set up the paths
 to server private key, server certificate and CA certificate used to sign
-the client certificates. Example configuration file is in samples/nginx.conf
+the client certificates. Example configuration file is in samples/apachesite
 
 If you are on OS X, I suggest OS X KeyChain access for doing this for
 testing, as it will automatically make your client certificates available in
@@ -23,9 +23,8 @@ http://www.dummies.com/how-to/content/how-to-become-a-certificate-authority-usin
 On other platforms, there are many tutorials on how to do this with OpenSSL
 e.g. http://pages.cs.wisc.edu/~zmiller/ca-howto/
 
-Restart your ngninx (sudo nginx -s restart), make sure your green unicorn is
- running and check that your https:// url loads your application and the
- _server certificate is valid_.
+Restart your apache (sudo service apache2 restart), and check that your
+https:// url loads your application and the _server certificate is valid_.
 
 ### This module
 

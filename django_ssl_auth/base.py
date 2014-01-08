@@ -49,16 +49,16 @@ class SSLClientAuthBackend(object):
         if not request.is_secure():
             logger.debug("insecure request")
             return None
-        authentication_status = request.META.get('HTTP_X_SSL_AUTHENTICATED',
+        authentication_status = request.META.get('SSL_CLIENT_VERIFY',
                                                  None)
         if (authentication_status != "SUCCESS" or
-                    'HTTP_X_SSL_USER_DN' not in request.META):
+                    'SSL_CLIENT_S_DN' not in request.META):
             logger.warn(
-                "HTTP_X_SSL_AUTHENTICATED marked failed or "
-                "HTTP_X_SSL_USER_DN "
+                "SSL_CLIENT_VERIFY marked failed or "
+                "SSL_CLIENT_S_DN "
                 "header missing")
             return None
-        dn = request.META.get('HTTP_X_SSL_USER_DN')
+        dn = request.META.get('SSL_CLIENT_S_DN')
         user_data = USER_DATA_FN(dn)
         username = user_data['username']
         try:
