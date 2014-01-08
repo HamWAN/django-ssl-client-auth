@@ -158,5 +158,5 @@ LOGGING = {
 }
 
 AUTHENTICATION_BACKENDS = ('django_ssl_auth.SSLClientAuthBackend', )
-USER_DATA_FN = 'django_ssl_auth.fineid.user_dict_from_dn'
+USER_DATA_FN = 'django_ssl_auth.lotw.user_dict_from_dn'
 AUTOCREATE_VALID_SSL_USERS = True

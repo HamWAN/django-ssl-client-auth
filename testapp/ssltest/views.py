@@ -1,7 +1,7 @@
 from pprint import pformat
 from django.http import HttpResponse
 from django.views.generic import View
-from django_ssl_auth.fineid import user_dict_from_dn
+from django_ssl_auth.lotw import user_dict_from_dn
 
 
 class Fineid(View):

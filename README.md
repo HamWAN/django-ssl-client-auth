@@ -37,7 +37,7 @@ https:// url loads your application and the _server certificate is valid_.
 There are two things you need to do in `settings.py`
 
 1. Define a function that can return a dictionary with fields that
-are required by your user model, e.g. `USER_DATA_FN = 'django_ssl_auth.fineid.user_dict_from_dn` is a sample implementation that takes the required fields from the DN of a Finnish government issued ID smart card for the `contrib.auth.models.User`.
+are required by your user model, e.g. `USER_DATA_FN = 'django_ssl_auth.lotw.user_dict_from_dn` is a sample implementation that takes the required fields from the DN of an ARRL Logbook of the World certificate for the `contrib.auth.models.User`.
 2. To automatically create `User`s for all valid certificate holders, set `AUTOCREATE_VALID_SSL_USERS = True`
 
 For details, see `testapp/ssltest/settings.py`
