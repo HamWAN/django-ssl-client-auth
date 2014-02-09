@@ -30,6 +30,8 @@ def user_dict_from_dn(dn):
     d = _dictify_dn(dn)
     ret = dict()
     ret['username'] = d['1.3.6.1.4.1.12348.1.1']
-    ret['first_name'], middle, ret['last_name'] = d['CN'].split()
+    name = d['CN'].split()
+    ret['first_name'] = name[0]
+    ret['last_name'] = name[-1]
     ret['email'] = d['emailAddress']
     return ret
