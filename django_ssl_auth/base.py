@@ -62,7 +62,7 @@ class SSLClientAuthBackend(object):
         user_data = USER_DATA_FN(dn)
         username = user_data['username']
         try:
-            user = User.objects.get(username=username)
+            user = User.objects.get(username__iexact=username)
         except User.DoesNotExist:
             logger.info("user {0} not found".format(username))
             if settings.AUTOCREATE_VALID_SSL_USERS:
