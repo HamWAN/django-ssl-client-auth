@@ -10,9 +10,7 @@
 Utility functions for handling certificates from ARRL Logbook of the World
 """
 
-def _decode_asn1_hack(asn1):
-    # sorry
-    return ''.join([chr(int(x, 16)) for x in map(''.join, zip(*[iter(asn1[5:])]*2))])
+from pyasn1.codec.der import decoder as der_decoder
 
 
 def _dictify_dn(dn):
@@ -21,8 +19,10 @@ def _dictify_dn(dn):
     except ValueError:
         # Since version 2.3.11, Apache HTTPD uses a RFC 2253 compatible format
         d = dict(x.split('=') for x in dn.split(',') if '=' in x)
-        if d['1.3.6.1.4.1.12348.1.1'].startswith('#13'):
-            d['1.3.6.1.4.1.12348.1.1'] = _decode_asn1_hack(d['1.3.6.1.4.1.12348.1.1'])
+        callsign = d['1.3.6.1.4.1.12348.1.1']
+        if callsign.startswith('#'):
+            bin = callsign[1:].decode("hex")
+            d['1.3.6.1.4.1.12348.1.1'] = str(der_decoder.decode(bin)[0])
         return d
 
 
